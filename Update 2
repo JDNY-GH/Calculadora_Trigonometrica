@@ -1,0 +1,106 @@
+//Tarea Investigativa Java
+//Autores:
+// - Alexa Herrera
+// - Jordanny Hernández
+
+import java.util.Scanner;   //Permite obtener datos de entrada en la terminal
+
+public class calc_trig {
+
+    // Función/Metodo para imprimir mensaje con formato en terminal
+    // 'msg' es el mensaje al que se le dara formato
+    // 'repeatChar' es el caracter que desea repetir
+    static void formatPrintl(String msg, char repeatChar) {      
+        
+        String titleDecoline = "";
+
+        for (int i = 0; i < msg.length() ; i++) {
+            titleDecoline += repeatChar;
+        }
+
+        System.out.println("\n" + titleDecoline);
+        System.out.println(msg);
+        System.out.println(titleDecoline + "\n");
+    }
+
+    static int angleInput() {
+        Scanner userInput = new Scanner(System.in);
+
+        while (true) {
+            try {
+                System.out.println("Ángulo a calcular:");
+                int angle = userInput.nextInt();
+                userInput.close();
+                return angle;
+            } catch (Exception e) {
+                System.out.println("Se ha ingresado un dato no permitido");
+                userInput.nextLine();
+            }
+        }
+    }
+
+    //Funciones Métodos trigonométricos
+
+    static void trigonom() {
+        int angle = angleInput();
+        double rad = Math.toRadians(angle);
+        System.out.println("Ángulo ingresado: " + angle);
+
+        System.out.println("sin(" + angle + "°) = " + Math.sin(rad));
+        System.out.println("cos(" + angle + "°) = " + Math.cos(rad));
+        System.out.println("tan(" + angle + "°) = " + Math.tan(rad));
+    }
+
+    static void trigonomInv() {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Valor a calcular:");
+        double value = userInput.nextDouble();
+        userInput.close();
+
+        System.out.println("arcsin: " + Math.toDegrees(Math.asin(value)) + "°");
+        System.out.println("arccos: " + Math.toDegrees(Math.acos(value)) + "°");
+        System.out.println("arctan: " + Math.toDegrees(Math.atan(value)) + "°");
+    }
+
+    static void trigonomHip() {
+        int angle = angleInput();
+        double rad = Math.toRadians(angle);
+        System.out.println("Ángulo ingresado: " + angle);
+
+        System.out.println("sinh(" + angle + "°) = " + Math.sinh(rad));
+        System.out.println("cosh(" + angle + "°) = " + Math.cosh(rad));
+        System.out.println("tanh(" + angle + "°) = " + Math.tanh(rad));
+    }
+
+
+    public static void main(String[] args) {
+        while (true) {
+            Scanner userInput = new Scanner(System.in);
+
+            formatPrintl("Calculadora Trigonométrica Java", '-');
+            System.out.println("Seleccione la operación que desea realizar");
+            System.out.println("   1 - Operación trigonométrica");
+            System.out.println("   2 - Operación trigonométrica inversa");
+            System.out.println("   3 - Operación trigonométrica hiperbólica");
+
+            String option = userInput.nextLine();
+
+            System.out.println(option);
+
+            switch (option) {
+                case "1":
+                    trigonom();
+                    break;
+                case "2":
+                    trigonomInv();
+                    break;
+                case "3":
+                    trigonomHip();
+                    break;
+                default:
+                    userInput.close();
+                    break;
+            }
+        }        
+    }
+}
